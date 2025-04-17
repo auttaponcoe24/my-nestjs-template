@@ -1,0 +1,47 @@
+// prisma/schema.prisma
+
+datasource db {
+  provider = "postgresql" // ใช้ฐานข้อมูลที่คุณต้องการ (เช่น PostgreSQL, MySQL, SQLite)
+  url      = env("DATABASE_URL") // URL เชื่อมต่อฐานข้อมูลจาก .env
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+model User {
+  id             String          @id @default(cuid())
+  provider       String          @default("local")
+  email          String
+  password       String?
+  name           String?
+  avatarUrl      String?         @map("avatar_url")
+  role           Role            @default(USER)
+  createdAt      DateTime?       @default(now()) @map("created_at")
+  updatedAt      DateTime?       @updatedAt @map("updated_at")
+  socialAccounts SocialAccount[]
+
+  @@unique([provider, email])
+  @@map("users")
+}
+
+model SocialAccount {
+  id          String    @id @default(cuid())
+  provider    String
+  providerId  String    @map("provider_id")
+  user        User      @relation(fields: [userId], references: [id])
+  userId      String    @map("user_id")
+  email       String?
+  displayName String?   @map("display_name")
+  avatarUrl   String?   @map("avatar_url")
+  createdAt   DateTime? @default(now()) @map("created_at")
+  updatedAt   DateTime? @updatedAt @map("updated_at")
+
+  @@unique([provider, providerId])
+  @@map("social_accounts")
+}
