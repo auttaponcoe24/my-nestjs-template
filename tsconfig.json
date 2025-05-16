@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "resolveJsonModule": true,
     "module": "commonjs",
     "declaration": true,
     "removeComments": true,
@@ -17,19 +18,21 @@
     "strictBindCallApply": false,
     "noFallthroughCasesInSwitch": false,
     "esModuleInterop": true,
-    "baseUrl": "./",
+    "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"],
-      "@config/*": ["src/config/*"],
-      "@common/*": ["src/common/*"],
-      "@logger/*": ["src/logger/*"],
-      "@shared/*": ["src/shared/*"],
-      "@middlewares/*": ["src/middlewares/*"],
-      "@modules/*": ["src/modules/*"],
-      "@prisma/*": ["src/prisma/*"],
-      "@test/*": ["test/*"]
+      "@/*": ["./src/*"],
+      "@/common/*": ["./src/common/*"],
+      "@/config/*": ["./src/config/*"],
+      "@/logger/*": ["./src/logger/*"],
+      "@/middlewares/*": ["./src/middlewares/*"],
+      "@/modules/*": ["./src/modules/*"],
+      "@/api/*": ["./src/modules/api/*"],
+      "@/db/*": ["./src/modules/database/*"],
+      "@/public/*": ["./src/public/*"],
+      "@/shared/*": ["./src/shared/*"],
+      "@/interfaces/*": ["./src/shared/interfaces/*"]
     }
   },
-  "include": ["src/**/*.ts", "test/**/*.ts", "src/**/*.d.ts"],
+  "include": ["./src/**/*.ts", "./test/**/*.ts", "./src/**/*.d.ts"],
   "exclude": ["node_modules", "./eslint.config.mjs"]
 }

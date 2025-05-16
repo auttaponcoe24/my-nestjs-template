@@ -1,10 +1,10 @@
-import { MiddlewareConsumer, Module, RequestMethod } from '@nestjs/common';
+import { MiddlewareConsumer, Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { AppService } from './app.service';
 import { RoutesModule } from './modules/routes.module';
 import { AppController } from './app.controller';
-import { LoggerMiddleware } from '@middlewares/logger';
-import { AuthModule } from './modules/auth/auth.module';
+import { AuthModule } from './modules/api/auth/auth.module';
+import { LoggerMiddleware } from '@/middlewares/logger';
 
 @Module({
   imports: [RoutesModule, ConfigModule.forRoot({ isGlobal: true }), AuthModule],

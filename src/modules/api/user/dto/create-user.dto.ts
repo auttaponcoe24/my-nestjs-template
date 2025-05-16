@@ -1,5 +1,5 @@
 import { User } from '@prisma/client';
-import { IsEmail, IsNotEmpty, IsNumber, IsOptional, IsString } from 'class-validator';
+import { IsEmail, IsNotEmpty, IsOptional, IsString } from 'class-validator';
 
 export class CreateUserDto implements Partial<User> {
   @IsEmail()
